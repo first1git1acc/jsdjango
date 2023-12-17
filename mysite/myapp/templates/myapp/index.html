@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js</title>
+    <script>
+        function showtext(num){
+            fetch(`http://127.0.0.1:8000/myapp/send/${num}`).then(response=>response.text()).then(text=>{
+            document.querySelector('#t').innerHTML = `<h1>${text}</h1>`;
+            });
+        }
+        document.addEventListener('DOMContentLoaded',function(){
+            document.querySelectorAll('button').forEach(function(button){
+                button.onclick = function(){
+                    showtext(this.dataset.text);
+                }
+            });
+        });
+        
+</script>
+</head>
+<body>
+    <h1>Test scripts</h1>
+    <div id="t"></div>
+    <button data-text="0">Text 1</button>
+    <button data-text="1">Text 2</button>
+    <button data-text="2">Text 3</button>
+</body>
+</html>
